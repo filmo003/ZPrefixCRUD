@@ -28,8 +28,12 @@ app.use(keycloak.middleware({
     admin: '/',
 }));
 
-app.get('/', keycloak.protect(), (request, response) => {
+app.get('/', (request, response) => {
     response.status(200).send('App root route running');
+});
+
+app.get('/login', keycloak.protect(), (request, response) => {
+    response.status(200).send('going to login');
 });
 
 module.exports = server;
