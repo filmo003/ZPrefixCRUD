@@ -63,26 +63,6 @@ services:
       - type: bind
         source: ./ui
         target: /app
-  
-  keycloak:
-    image: jboss/keycloak
-    container_name: keycloak
-    depends_on:
-      - zprefix-api
-    ports:
-      - '8080:8080'
-    networks:
-      - app-network
-    environment:
-      - DB_VENDOR=POSTGRES
-      - DB_ADDR=zprefix-db
-      - DB_DATABASE=zprefix
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - DB_SCHEMA=public
-      - DB_PASSWORD=docker
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=admin
 
 networks:
   app-network:

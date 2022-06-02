@@ -1,8 +1,10 @@
 {
     "realm": "zprefix",
     "auth-server-url": "http://localhost:8080/auth/",
-    "ssl-required": "external",
-    "resource": "zprefixclient",
+    "ssl-required": "none",
+    "resource": "zprefix-ui",
     "public-client": true,
-    "confidential-port": 0
-}
+    "confidential-port": 0,
+    "onLoad": "login-required",
+    "promiseType": "native"
+  }
