@@ -7,9 +7,9 @@ exports.seed = async function(knex) {
   await knex('users').del()
   await knex('users').insert([
     {
-      firstName: 'John',
-      lastName: 'Doe',
-      usrName: 'johndoe',
+      firstname: 'John',
+      lastname: 'Doe',
+      username: 'johndoe',
       password: 'password123'
     },
   ]);
