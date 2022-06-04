@@ -4,7 +4,7 @@ import axios from 'axios';
 const Register = () => {
     const [error, setError] = React.useState('');
 
-    const apiUrl = window.location.origin;
+    const apiUrl = 'http://localhost';
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -13,16 +13,17 @@ const Register = () => {
         let firstname = document.getElementById('firstname').value;
         let lastname = document.getElementById('lastname').value;
         axios.post(`${apiUrl}:8082/api/register`, {
-            firstname,
-            lastname,
-            username,
-            password
+            firstName: firstname,
+            lastName: lastname,
+            usrName: username,
+            password: password
         })
         .then(res => {
-            console.log(res);
             console.log(res.data);
-            if (res.data.success) {
-                window.location.href = window.location.origin;
+            if (res.status === 201) {
+                console.log("redirecting to home page");
+                console.log("window location", window.location);
+                window.location = `${apiUrl}:3001/`;
             }
             else {
                 setError(res.data.message);

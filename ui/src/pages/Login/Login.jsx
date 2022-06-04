@@ -6,21 +6,22 @@ const Login = () => {
     const [password, setPassword] = React.useState('');
     const [error, setError] = React.useState('');
 
-    const apiUrl = window.location.origin;
+    const apiUrl = 'http://localhost'
 
     const handleSubmit = (e) => {
         e.preventDefault();
         let username = document.getElementById('username').value;
         let password = document.getElementById('password').value;
         axios.post(`${apiUrl}:8082/api/login`, {
-            username,
-            password
+            usrName: username,
+            password: password
         })
         .then(res => {
-            console.log(res);
             console.log(res.data);
-            if (res.data.success) {
-                window.location.href = window.location.origin;
+            if (res.status === 200) {
+                console.log("redirecting to home page");
+                console.log("window location", window.location.href);
+                window.location = `${apiUrl}:3001/`;
             }
             else {
                 setError(res.data.message);

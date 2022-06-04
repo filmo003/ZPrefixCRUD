@@ -7,6 +7,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../knexfile')[env];
 const knex = require('knex')(config);
 const { hash, compare } = require('bcrypt');
+var cookieParser = require('cookie-parser');
 
 const saltRounds = 10;
 
@@ -20,22 +21,27 @@ app.get('/', (request, response) => {
 // create a user
 app.post("/api/register", (req, res) => {
     // hash password and store
-    let { fistName, lastName, username, password } = req.body;
+    let { firstName, lastName, usrName, password } = req.body;
   
-    if (!username) res.status(401).send("username required for signup");
-    else if (!password) res.status(401).send("password require for signup");
+    if (!usrName) res.status(401).send("Username required for signup");
+    else if (!password) res.status(401).send("Password required for signup");
+    else if (knex('users').where({ usrName }).length >= 1) res.status(401).send("Username already exists");
         else {
         hash(password, saltRounds).then((hashedPassword) => {
             console.log(`user's real password:`, password);
             console.log(`That password hashed to:`, hashedPassword);
             knex('users').insert({
-                firstName: fistName,
+                firstName: firstName,
                 lastName: lastName,
-                usrName: username,
+                usrName: usrName,
                 password: hashedPassword
             })
             .then((data) => {
-                res.status(201).json("USER CREATED SUCCESSFULLY")
+                res
+                    .status(201)
+                    .cookie('username', usrName, opts)
+                    .cookie('userId', data[0], opts)
+                    .json("USER CREATED SUCCESSFULLY");
             })
             .catch((err) => res.status(500).json(err));
         });
@@ -44,21 +50,29 @@ app.post("/api/register", (req, res) => {
 
 app.post("/api/login", (req, res) => {
     // compare password to hashed password
-    let { username, password } = req.body;
+    let { usrName, password } = req.body;
 
-    if (!username) res.status(401).send("username required for login");
-    else if (!password) res.status(401).send("password require for login");
+    if (!usrName) res.status(401).send("Username required for login");
+    else if (!password) res.status(401).send("Password required for login");
     else {
         knex('users').where({
-            usrName: username
+            usrName: usrName
         })
         .then((data) => {
-            if (data.length === 0) res.status(401).send("username not found");
+            if (data.length === 0) res.status(401).send("Username not found");
             else {
                 let user = data[0];
                 compare(password, user.password).then((isMatch) => {
                     if (isMatch) {
-                        res.status(200).json(user);
+                        let opts = {
+                            maxAge: 1000 * 60 * 60 * 24 * 7, // would expire after 7 days
+                            httpOnly: true, // The cookie only accessible by the web server
+                        }
+                        res
+                            .status(200)
+                            .cookie('username', usrName, opts)
+                            .cookie('userId', user.id, opts)
+                            .json("LOGIN SUCCESSFUL");
                     } else {
                         res.status(401).send("incorrect password");
                     }
