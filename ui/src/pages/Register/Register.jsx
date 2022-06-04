@@ -17,7 +17,7 @@ const Register = () => {
             lastname: lastname,
             username: username,
             password: password
-        })
+        }, { withCredentials: true })
         .then(res => {
             console.log(res.data);
             if (res.status === 201) {

@@ -10,7 +10,7 @@ exports.seed = async function(knex) {
       firstname: 'John',
       lastname: 'Doe',
       username: 'johndoe',
-      password: 'password123'
+      password: 'ThisIsntHashedBecauseItsSeedData'
     },
   ]);
 };

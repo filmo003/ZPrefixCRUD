@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
     const [error, setError] = React.useState('');
 
     const apiUrl = 'http://localhost'
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,23 +15,19 @@ const Login = () => {
         axios.post(`${apiUrl}:8082/api/login`, {
             username: username,
             password: password
-        })
+        }, { withCredentials: true })
         .then(res => {
             console.log(res.data);
             if (res.status === 200) {
+                console.log("cookies: ",res.cookie);
                 console.log("redirecting to home page");
-                console.log("window location", window.location.href);
-                window.location = `${apiUrl}:3001/`;
+                navigate(`/`);
             }
             else {
                 setError(res.data.message);
             }
         })
-        .catch(err => {
-            console.log("error with handleSubmit", err);
-            setError(err.response.data.message);
-            window.alert(err.response.data);
-        });
+        
     };
     return (
         <div>
