@@ -21,25 +21,25 @@ app.get('/', (request, response) => {
 // create a user
 app.post("/api/register", (req, res) => {
     // hash password and store
-    let { firstName, lastName, usrName, password } = req.body;
+    let { firstName, lastName, username, password } = req.body;
   
-    if (!usrName) res.status(401).send("Username required for signup");
+    if (!username) res.status(401).send("Username required for signup");
     else if (!password) res.status(401).send("Password required for signup");
-    else if (knex('users').where({ usrName }).length >= 1) res.status(401).send("Username already exists");
+    else if (knex('users').where({ username }).length >= 1) res.status(401).send("Username already exists");
         else {
         hash(password, saltRounds).then((hashedPassword) => {
             console.log(`user's real password:`, password);
             console.log(`That password hashed to:`, hashedPassword);
             knex('users').insert({
-                firstName: firstName,
-                lastName: lastName,
-                usrName: usrName,
+                firstname: firstName,
+                lastname: lastName,
+                username: username,
                 password: hashedPassword
             })
             .then((data) => {
                 res
                     .status(201)
-                    .cookie('username', usrName, opts)
+                    .cookie('username', username, opts)
                     .cookie('userId', data[0], opts)
                     .json("USER CREATED SUCCESSFULLY");
             })
@@ -50,13 +50,13 @@ app.post("/api/register", (req, res) => {
 
 app.post("/api/login", (req, res) => {
     // compare password to hashed password
-    let { usrName, password } = req.body;
+    let { username, password } = req.body;
 
-    if (!usrName) res.status(401).send("Username required for login");
+    if (!username) res.status(401).send("Username required for login");
     else if (!password) res.status(401).send("Password required for login");
     else {
         knex('users').where({
-            usrName: usrName
+            username: username
         })
         .then((data) => {
             if (data.length === 0) res.status(401).send("Username not found");
@@ -70,7 +70,7 @@ app.post("/api/login", (req, res) => {
                         }
                         res
                             .status(200)
-                            .cookie('username', usrName, opts)
+                            .cookie('username', username, opts)
                             .cookie('userId', user.id, opts)
                             .json("LOGIN SUCCESSFUL");
                     } else {

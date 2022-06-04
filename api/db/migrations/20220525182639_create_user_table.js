@@ -5,9 +5,9 @@
 exports.up = function(knex) {
   return knex.schema.createTable('users', table => {
     table.increments('id').primary();
-    table.string('firstName').notNullable();
-    table.string('lastName').notNullable();
-    table.string('usrName').notNullable();
+    table.string('firstname').notNullable();
+    table.string('lastname').notNullable();
+    table.string('username').notNullable();
     table.string('password').notNullable();
     table.timestamps(true, true);
   });

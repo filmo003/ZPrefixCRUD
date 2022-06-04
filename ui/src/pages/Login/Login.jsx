@@ -13,7 +13,7 @@ const Login = () => {
         let username = document.getElementById('username').value;
         let password = document.getElementById('password').value;
         axios.post(`${apiUrl}:8082/api/login`, {
-            usrName: username,
+            username: username,
             password: password
         })
         .then(res => {

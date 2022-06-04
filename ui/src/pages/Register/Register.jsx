@@ -13,9 +13,9 @@ const Register = () => {
         let firstname = document.getElementById('firstname').value;
         let lastname = document.getElementById('lastname').value;
         axios.post(`${apiUrl}:8082/api/register`, {
-            firstName: firstname,
-            lastName: lastname,
-            usrName: username,
+            firstname: firstname,
+            lastname: lastname,
+            username: username,
             password: password
         })
         .then(res => {
