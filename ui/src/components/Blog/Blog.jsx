@@ -12,6 +12,10 @@ const Blog = ({post}) => {
             <h3>{post.title}</h3>
             <p>Created on: {post.created_at}</p>
             <p>{postContent}</p>
+            <div>
+                <button>Edit Post</button>
+                <button>Delete Post</button>
+            </div>
         </div>
     );
 }

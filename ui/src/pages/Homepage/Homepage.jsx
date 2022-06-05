@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogGrid from '../../components/BlogGrid/BlogGrid';
 
-const Homepage = ({ posts }) => {
+const Homepage = ({ posts, useSetPostFocusId }) => {
 
     return (
         <div>

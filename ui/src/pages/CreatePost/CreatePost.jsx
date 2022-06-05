@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-const CreatePost = ({ useSetRerender }) => {
+const CreatePost = ({ useSetRerender, rerender }) => {
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -22,7 +22,7 @@ const CreatePost = ({ useSetRerender }) => {
             .then(res => {
                 if (res.status === 201) {
                     console.log("redirecting to home page after creating post");
-                    useSetRerender(true);
+                    useSetRerender(!rerender);
                     navigate(`/my-posts`);
                 }
             })
