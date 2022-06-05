@@ -2,6 +2,7 @@ import React from 'react';
 import { RuxGlobalStatusBar, RuxButton } from '@astrouxds/react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import './Header.css';
 
 const getPageTitle = location => {
 
@@ -10,10 +11,8 @@ const getPageTitle = location => {
       return 'Developer Info';
     case /\/login*/.test(location):
       return 'Login';
-    case /\/admin/.test(location):
-      return 'Admin Page';
     default:
-      return 'Blogs!';
+      return 'ZPrefix Blog Application';
   }
 };
 
@@ -25,12 +24,14 @@ const Header = ({ location }) => {
       id="page-title"
       style={{ backgroundColor: '#1DAA64' }}
       app-name={getPageTitle(location)}
+      include-icon="true"
       menu-icon="apps"
+      fontSize="2rem"
       >
-        <span>
+        <span id="welcomeUser">
           Welcome: {Cookies.get('username')}
         </span>
-        <Link to="/">
+        <Link className='loginButton' to="/">
           <RuxButton
             id="logout-button"
             style={{ backgroundColor: '#1DAA64' }}
@@ -52,11 +53,15 @@ const Header = ({ location }) => {
     return (
       <RuxGlobalStatusBar
       id="page-title"
-      style={{ backgroundColor: '#1DAA64' }}
+      style={{
+        backgroundColor: '#1DAA64',
+        fontSize: '2rem'
+      }}
       app-name={getPageTitle(location)}
+      include-icon="true"
       menu-icon="apps"
       >
-        <Link to="/login">
+        <Link className='loginButton' to="/login">
           <RuxButton slot="right-side">Login</RuxButton>
         </Link>
       </RuxGlobalStatusBar>

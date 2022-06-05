@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Cookies from "js-cookie";
+import './Links.css';
 
 const Links = () => {
     if (Cookies.get("username")) {

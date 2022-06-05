@@ -9,6 +9,7 @@ import Register from "./pages/Register/Register";
 import MyPosts from "./pages/MyPosts/MyPosts";
 import CreatePost from "./pages/CreatePost/CreatePost";
 import PostPage from "./pages/PostPage/PostPage";
+import './App.css';
 
 function App() {
   const [posts, setPosts] = React.useState([]);
@@ -29,7 +30,7 @@ function App() {
     }, [rerender]);
 
   return (
-    <div>
+    <div id='appContainer'>
       <Header location={useLocation().pathname} />
       <Links />
       <Routes>
