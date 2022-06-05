@@ -35,7 +35,7 @@ function App() {
         <Route path="/register" element={<Register useSetRerender={setRerender} rerender={rerender} />} />
         <Route path="/my-posts" element={<MyPosts posts={posts} />} />
         <Route path="/create-post" element={<CreatePost useSetRerender={setRerender} rerender={rerender} />} />
-        <Route path="/post/:postId" element={<PostPage posts={posts} />} />
+        <Route path="/post/:postId" element={<PostPage posts={posts} useSetRerender={setRerender} rerender={rerender} />} />
       </Routes>
     </div>
   );

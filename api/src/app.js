@@ -114,6 +114,38 @@ app.post('/api/create-post', (req, res) => {
     }
 });
 
+app.patch('/api/update-post/:id', (req, res) => {
+    let { id } = req.params;
+    let { title, content } = req.body;
+    if (!title) res.status(401).send("Title required for post");
+    else if (!content) res.status(401).send("Content required for post");
+    else {
+        knex('post').where({
+            id: id
+        })
+        .update({
+            title: title,
+            content: content
+        })
+        .then((data) => {
+            res.status(200).json(`Post updated with ID: ${id}`);
+        })
+        .catch((err) => res.status(500).json(err));
+    }
+});
+
+app.delete('/api/delete-post/:id', (req, res) => {
+    let { id } = req.params;
+    knex('post').where({
+        id: id
+    })
+    .del()
+    .then((data) => {
+        res.status(200).json(`Post deleted with ID: ${id}`);
+    })
+    .catch((err) => res.status(500).json(err));
+});
+
 app.get('/api/:table_name', (req, res) => {
     console.log(`Processing GET for ${req.params.table_name}`);
     let builder = knex(req.params.table_name);
