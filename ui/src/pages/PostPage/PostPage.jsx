@@ -46,7 +46,23 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
     }
 
     const handleDelete = () => {
-        console.log("Delete");
+        console.log("Deleting post");
+        axios.delete(`http://localhost:8082/api/delete-post/${postId}`, { withCredentials: true })
+            .then(res => {
+                console.log(res.status);
+                if (res.status === 200) {
+                    useSetRerender(!rerender);
+                    navigate(`/my-posts`);
+                }
+                else {
+                    console.log("error with handleDelete", res.data.message);
+                    window.alert(res.data.message);
+                }
+            })
+            .catch(err => {
+                console.log("error with handleDelete", err);
+                window.alert(err.response.data);
+            });
     }
 
     if (setEdit === true) {
@@ -90,7 +106,7 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
                 <p>{post.content}</p>
                 <div className='editAndDelete'>
                     <button onClick={() => setEditState(true)}>Edit Post</button>
-                    <button>Delete Post</button>
+                    <button onClick={() => handleDelete()}>Delete Post</button>
                 </div>
             </div>
         );
