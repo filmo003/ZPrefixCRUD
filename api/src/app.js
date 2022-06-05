@@ -55,7 +55,10 @@ app.post("/api/register", async (req, res) => {
                         .status(201)
                         .cookie('username', username, cookieOptions)
                         .cookie('userId', id, cookieOptions)
-                        .json("USER CREATED SUCCESSFULLY");
+                        .json({
+                            userId: id,
+                            username: username
+                        });
                 })
             });
         }
@@ -79,9 +82,12 @@ app.post("/api/login", (req, res) => {
                     if (isMatch) {
                         res
                             .status(200)
-                            .cookie('username', username, cookieOptions)
-                            .cookie('userId', user.id, cookieOptions)
-                            .json("LOGIN SUCCESSFUL");
+                            //.cookie('username', username, cookieOptions)
+                            //.cookie('userId', user.id, cookieOptions)
+                            .json({
+                                userId: user.id,
+                                username: username
+                            });
                     } else {
                         res.status(401).send("incorrect password");
                     }
