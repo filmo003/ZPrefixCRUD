@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = ({ useSetRerender, rerender }) => {
     const [error, setError] = React.useState('');
 
     const apiUrl = 'http://localhost';
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,7 +26,7 @@ const Register = ({ useSetRerender, rerender }) => {
                 console.log("redirecting to home page");
                 console.log("window location", window.location);
                 useSetRerender(!rerender);
-                window.location = `${apiUrl}:3001/`;
+                navigate(`/`);
             }
             else {
                 setError(res.data.message);
