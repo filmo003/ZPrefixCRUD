@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { NavLink } from 'react-router-dom';
 
 const PostPage = ({ posts, useSetRerender, rerender }) => {
     const navigate = useNavigate();
@@ -97,16 +99,29 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
             </div>
         );
     }
-    else {
+    else if (Cookies.get("userId")) {
+        // signed in, allow to edit/delete
         return (
             <div>
                 <h1>{post.title}</h1>
-                <p>Post Author: {post.username}</p>
                 <p>Created on: {post.created_at}</p>
                 <p>{post.content}</p>
                 <div className='editAndDelete'>
                     <button onClick={() => setEditState(true)}>Edit Post</button>
                     <button onClick={() => handleDelete()}>Delete Post</button>
+                </div>
+            </div>
+        );
+    }
+    else {
+        // not signed in, only allow to read
+        return (
+            <div>
+                <h1>{post.title}</h1>
+                <p>Created on: {post.created_at}</p>
+                <p>{post.content}</p>
+                <div className='editAndDelete'>
+                    <NavLink to={`/login`}>Sign in to edit or delete</NavLink>
                 </div>
             </div>
         );

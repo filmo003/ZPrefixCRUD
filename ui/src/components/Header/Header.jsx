@@ -37,6 +37,7 @@ const Header = ({ location }) => {
             icon="exit_to_app"
             onClick={() => {
               Cookies.remove('username');
+              Cookies.remove('userId');
               console.log('logged out');
             }
             }
