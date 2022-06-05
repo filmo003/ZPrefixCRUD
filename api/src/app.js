@@ -75,14 +75,10 @@ app.post("/api/login", (req, res) => {
                 let user = data[0];
                 compare(password, user.password).then((isMatch) => {
                     if (isMatch) {
-                        opt = {
-                            domain: 'localhost',
-                            path: '/'
-                        };
                         res
                             .status(200)
-                            .cookie('username', username, opt)
-                            .cookie('userId', user.id, opt)
+                            .cookie('username', username)
+                            .cookie('userId', user.id)
                             .json("LOGIN SUCCESSFUL");
                     } else {
                         res.status(401).send("incorrect password");
