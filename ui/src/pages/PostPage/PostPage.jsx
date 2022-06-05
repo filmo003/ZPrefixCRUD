@@ -12,7 +12,7 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
     const [content, setContent] = useState('');
     const [setEdit, setEditState] = useState(false);
     const [error, setError] = useState('');
-    const apiUrl = 'http://localhost';
+    const apiUrl = 'https://zprefix-crud-api.herokuapp.com';
 
     console.log('posts are',posts);
     let postId = useParams().postId;
@@ -26,7 +26,7 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
 
     const handleEditSubmit = (e) => {
         e.preventDefault();
-        axios.patch(`http://localhost:8082/api/update-post/${postId}`, {
+        axios.patch(`${apiUrl}/api/update-post/${postId}`, {
             title: title,
             content: content
         }, { withCredentials: true })
@@ -49,7 +49,7 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
 
     const handleDelete = () => {
         console.log("Deleting post");
-        axios.delete(`http://localhost:8082/api/delete-post/${postId}`, { withCredentials: true })
+        axios.delete(`${apiUrl}/api/delete-post/${postId}`, { withCredentials: true })
             .then(res => {
                 console.log(res.status);
                 if (res.status === 200) {

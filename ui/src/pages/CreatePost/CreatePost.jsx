@@ -9,7 +9,7 @@ const CreatePost = ({ useSetRerender, rerender }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [error, setError] = useState('');
-    const apiUrl = 'http://localhost';
+    const apiUrl = 'https://zprefix-crud-api.herokuapp.com';
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,7 +18,7 @@ const CreatePost = ({ useSetRerender, rerender }) => {
             content: content,
             user_id: parseInt(Cookies.get("userId"))
         };
-        axios.post(`${apiUrl}:8082/api/create-post`, post, { withCredentials: true })
+        axios.post(`${apiUrl}/api/create-post`, post, { withCredentials: true })
             .then(res => {
                 if (res.status === 201) {
                     console.log("redirecting to home page after creating post");

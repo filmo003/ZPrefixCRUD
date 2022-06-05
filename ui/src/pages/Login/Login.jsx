@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const [error, setError] = React.useState('');
 
-    const apiUrl = 'http://localhost'
+    const apiUrl = 'https://zprefix-crud-api.herokuapp.com'
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         let username = document.getElementById('username').value;
         let password = document.getElementById('password').value;
-        axios.post(`${apiUrl}:8082/api/login`, {
+        axios.post(`${apiUrl}/api/login`, {
             username: username,
             password: password
         }, { withCredentials: true })

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Register = ({ useSetRerender, rerender }) => {
     const [error, setError] = React.useState('');
 
-    const apiUrl = 'http://localhost';
+    const apiUrl = 'https://zprefix-crud-api.herokuapp.com';
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -14,7 +14,7 @@ const Register = ({ useSetRerender, rerender }) => {
         let password = document.getElementById('password').value;
         let firstname = document.getElementById('firstname').value;
         let lastname = document.getElementById('lastname').value;
-        axios.post(`${apiUrl}:8082/api/register`, {
+        axios.post(`${apiUrl}/api/register`, {
             firstname: firstname,
             lastname: lastname,
             username: username,

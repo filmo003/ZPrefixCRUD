@@ -13,9 +13,12 @@ import PostPage from "./pages/PostPage/PostPage";
 function App() {
   const [posts, setPosts] = React.useState([]);
   const [rerender, setRerender] = React.useState(false);
+
+  const apiURL = "https://zprefix-crud-api.herokuapp.com";
+
     // get all posts/blogs
     React.useEffect( () => {
-        axios.get('http://localhost:8082/api/post', { withCredentials: true })
+        axios.get(`${apiURL}/api/post`, { withCredentials: true })
             .then(res => {
                 console.log(res.data);
                 setPosts(res.data);
