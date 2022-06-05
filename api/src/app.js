@@ -10,7 +10,7 @@ var cookieParser = require('cookie-parser');
 
 const saltRounds = 10;
 const cookieOptions = {
-    domain: 'https://zprefix-crud-ui.herokuapp.com',
+    domain: '.zprefix-crud-ui.herokuapp.com',
 }
 
 app.use(cors(
