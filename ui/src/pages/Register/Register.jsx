@@ -23,6 +23,7 @@ const Register = ({ useSetRerender, rerender }) => {
         .then(res => {
             console.log(res.data);
             if (res.status === 201) {
+                let data = res.data;
                 document.cookie = `username=${data.username}`;
                 document.cookie = `userId=${data.userId}`;
                 console.log("redirecting to home page");

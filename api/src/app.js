@@ -40,8 +40,6 @@ app.post("/api/register", async (req, res) => {
     else if ( usernameTaken) res.status(401).send("Username already exists");
         else {
             hash(password, saltRounds).then((hashedPassword) => {
-                console.log(`user's real password:`, password);
-                console.log(`That password hashed to:`, hashedPassword);
                 knex('users').insert({
                     firstname: firstname,
                     lastname: lastname,
@@ -50,13 +48,13 @@ app.post("/api/register", async (req, res) => {
                 })
                 .returning('id')
                 .then((id) => {
-                    console.log('data is:', id);
+                    console.log('data is:', id[0].id);
                     res
                         .status(201)
-                        .cookie('username', username, cookieOptions)
-                        .cookie('userId', id, cookieOptions)
+                        //.cookie('username', username, cookieOptions)
+                        //.cookie('userId', id, cookieOptions)
                         .json({
-                            userId: id,
+                            userId: id[0].id,
                             username: username
                         });
                 })
