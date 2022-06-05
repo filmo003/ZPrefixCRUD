@@ -12,7 +12,7 @@ const saltRounds = 10;
 
 app.use(cors(
     {
-        origin: 'http://localhost:3001',
+        origin: 'https://zprefix-crud-ui.herokuapp.com',
         credentials: true
     }
 ));
