@@ -20,7 +20,6 @@ const Login = () => {
             console.log(res.status);
             if (res.status === 200) {
                 let data = res.data;
-                console.log("data is ", data);
                 document.cookie = `username=${data.username}`;
                 document.cookie = `userId=${data.userId}`;
                 console.log("redirecting to home page");
