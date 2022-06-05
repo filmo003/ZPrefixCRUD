@@ -17,16 +17,21 @@ const Login = () => {
             password: password
         }, { withCredentials: true })
         .then(res => {
-            console.log(res.data);
+            console.log(res.status);
             if (res.status === 200) {
-                console.log("cookies: ",res.cookie);
                 console.log("redirecting to home page");
-                navigate(`/`);
+                navigate(`/my-posts`);
             }
             else {
                 setError(res.data.message);
             }
         })
+        .catch(err => {
+            console.log("error with handleSubmit", err);
+            setError(err.response.data.message);
+            window.alert(err.response.data);
+        }
+        );
         
     };
     return (

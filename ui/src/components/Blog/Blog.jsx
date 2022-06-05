@@ -1,9 +1,17 @@
 import React from 'react';
 
-const Blog = () => {
+const Blog = ({post}) => {
+
+    let postContent = post.content.substring(0,100);
+    if (post.content.length > 100) {
+        postContent += "...";
+    }
+
     return (
         <div>
-            <h1>Blog</h1>
+            <h3>{post.title}</h3>
+            <p>Created on: {post.created_at}</p>
+            <p>{postContent}</p>
         </div>
     );
 }

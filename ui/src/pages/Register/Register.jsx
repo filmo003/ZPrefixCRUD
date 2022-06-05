@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const Register = () => {
+const Register = ({ useSetRerender }) => {
     const [error, setError] = React.useState('');
 
     const apiUrl = 'http://localhost';
@@ -23,6 +23,7 @@ const Register = () => {
             if (res.status === 201) {
                 console.log("redirecting to home page");
                 console.log("window location", window.location);
+                useSetRerender(true);
                 window.location = `${apiUrl}:3001/`;
             }
             else {

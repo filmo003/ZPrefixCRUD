@@ -94,6 +94,26 @@ app.post("/api/login", (req, res) => {
     }
 });
 
+app.post('/api/create-post', (req, res) => {
+    console.log(`Processing request to create post:`, req.body);
+    let { title, content, user_id } = req.body;
+    if (!title) res.status(401).send("Title required for post");
+    else if (!content) res.status(401).send("Content required for post");
+    else if (!user_id) res.status(401).send("Not logged in");
+    else {
+        knex('post').insert({
+            title: title,
+            content: content,
+            user_id: user_id
+        })
+        .returning('id')
+        .then((id) => {
+            res.status(201).json(`Post created with ID: ${id}`);
+        })
+        .catch((err) => res.status(500).json(err));
+    }
+});
+
 app.get('/api/:table_name', (req, res) => {
     console.log(`Processing GET for ${req.params.table_name}`);
     let builder = knex(req.params.table_name);

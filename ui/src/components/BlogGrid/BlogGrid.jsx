@@ -1,9 +1,16 @@
 import React from 'react';
+import Blog from '../../components/Blog/Blog';
 
-const BlogGrid = () => {
+const BlogGrid = ({ posts }) => {
     return (
         <div>
-            <h1>Blog</h1>
+            {posts.map(post => {
+                return (
+                    <div key={post.id}>
+                        <Blog post={post} />
+                    </div>
+                );
+            })}
         </div>
     );
 }

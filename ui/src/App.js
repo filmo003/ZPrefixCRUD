@@ -1,20 +1,40 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import axios from "axios";
 import Header from "./components/Header/Header";
 import Homepage from "./pages/Homepage/Homepage";
 import Links from "./components/Links/Links";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import MyPosts from "./pages/MyPosts/MyPosts";
+import CreatePost from "./pages/CreatePost/CreatePost";
 
 function App() {
+  const [posts, setPosts] = React.useState([]);
+  const [rerender, setRerender] = React.useState(false);
+    // get all posts/blogs
+    React.useEffect( () => {
+        axios.get('http://localhost:8082/api/post', { withCredentials: true })
+            .then(res => {
+                console.log(res.data);
+                setPosts(res.data);
+                setRerender(!rerender);
+            })
+            .catch(err => {
+                console.log("error with handleSubmit", err);
+            });
+    }, [rerender]);
+
   return (
     <div>
       <Header location={useLocation().pathname} />
       <Links />
       <Routes>
-        <Route exact path="/" element={<Homepage />} />
+        <Route exact path="/" element={<Homepage posts={posts}/>} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register useSetRerender={setRerender}/>} />
+        <Route path="/my-posts" element={<MyPosts posts={posts}/>} />
+        <Route path="/create-post" element={<CreatePost useSetRerender={setRerender}/>} />
       </Routes>
     </div>
   );
