@@ -9,6 +9,9 @@ const { hash, compare } = require('bcrypt');
 var cookieParser = require('cookie-parser');
 
 const saltRounds = 10;
+const cookieOptions = {
+    domain: 'zprefix-crud-ui.herokuapp.com',
+}
 
 app.use(cors(
     {
@@ -22,7 +25,7 @@ app.use(cookieParser());
 app.get('/', (request, response) => {
     response
         .status(200)
-        .cookie('test', 'johndoe')
+        .cookie('test', 'johndoe', cookieOptions)
         .send('App root route running');
 });
 
@@ -51,8 +54,8 @@ app.post("/api/register", async (req, res) => {
                     console.log('data is:', id);
                     res
                         .status(201)
-                        .cookie('username', username)
-                        .cookie('userId', id)
+                        .cookie('username', username, cookieOptions)
+                        .cookie('userId', id, cookieOptions)
                         .json("USER CREATED SUCCESSFULLY");
                 })
             });
@@ -77,8 +80,8 @@ app.post("/api/login", (req, res) => {
                     if (isMatch) {
                         res
                             .status(200)
-                            .cookie('username', username)
-                            .cookie('userId', user.id)
+                            .cookie('username', username, cookieOptions)
+                            .cookie('userId', user.id, cookieOptions)
                             .json("LOGIN SUCCESSFUL");
                     } else {
                         res.status(401).send("incorrect password");
