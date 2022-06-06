@@ -76,3 +76,7 @@ textarea{
     margin: 4px 2px;
     cursor: pointer;
 }
+
+#contentLabel{
+    margin-bottom: 50%;
+}

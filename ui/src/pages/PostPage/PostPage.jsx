@@ -83,7 +83,7 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
                             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                         </div>
                         <div>
-                            <label>Content</label>
+                            <label id='contentLabel'>Content</label>
                             <textarea value={content} onChange={(e) => setContent(e.target.value)} />
                         </div>
                         <button type="submit">Submit</button>
