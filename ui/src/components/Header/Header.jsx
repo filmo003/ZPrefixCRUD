@@ -44,9 +44,7 @@ const Header = ({ location }) => {
               console.log('logged out');
             }
             }
-          >
-            Logout
-          </RuxButton>
+          >Logout</RuxButton>
         </Link>
       </RuxGlobalStatusBar>
     );
