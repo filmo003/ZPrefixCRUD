@@ -1,0 +1,27 @@
+h1{
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    text-shadow: 1px 1px 1px black;
+}
+
+label{
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
+    text-shadow: 1px 1px 1px black;
+}
+
+#noAccount{
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: white;
+}

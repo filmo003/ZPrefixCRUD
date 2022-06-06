@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Register.css';
 
 const Register = ({ useSetRerender, rerender }) => {
     const [error, setError] = React.useState('');
@@ -63,7 +64,7 @@ const Register = ({ useSetRerender, rerender }) => {
                 <input type="submit" value="Submit" onClick={handleSubmit} />
             </form>
             <div>
-                <p>
+                <p id='alreadyHaveAccount'>
                     Already have an account? <a href="/login">login</a>
                 </p>
             </div>

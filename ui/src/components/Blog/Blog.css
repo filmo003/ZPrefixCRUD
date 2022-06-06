@@ -13,7 +13,7 @@
 .postTitle {
     font-size: 1.5em;
     font-weight: bold;
-    color: #fff;
+    color: black;
     text-align: left;
     margin-bottom: 20px;
     margin-left: 20px;
@@ -23,7 +23,7 @@
 .createdOn {
     font-size: 0.8em;
     font-weight: bold;
-    color: #fff;
+    color: black;
     text-align: left;
     margin-bottom: 20px;
     margin-left: 20px;
@@ -45,7 +45,7 @@
 .postContent {
     font-size: 1.2em;
     font-weight: bold;
-    color: #fff;
+    color: black;
     text-align: left;
     margin-bottom: 20px;
     margin-left: 20px;

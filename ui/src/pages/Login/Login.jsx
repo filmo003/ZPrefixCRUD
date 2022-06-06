@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
     const [error, setError] = React.useState('');
@@ -52,7 +53,7 @@ const Login = () => {
                 <input type="submit" value="Submit" onClick={handleSubmit} />
             </form>
             <div>
-                <p>
+                <p id='noAccount'>
                     Don't have an account? <a href="/register">Register Here</a>
                 </p>
             </div>
