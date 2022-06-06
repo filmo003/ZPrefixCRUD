@@ -17,7 +17,6 @@
     text-align: left;
     margin-bottom: 20px;
     margin-left: 20px;
-    text-shadow: 1px 1px 1px black;
 }
 
 .createdOn {
@@ -27,7 +26,6 @@
     text-align: left;
     margin-bottom: 20px;
     margin-left: 20px;
-    text-shadow: 1px 1px 1px black;
 }
 
 .postContainer {
@@ -49,5 +47,4 @@
     text-align: left;
     margin-bottom: 20px;
     margin-left: 20px;
-    text-shadow: 1px 1px 1px black;
 }
