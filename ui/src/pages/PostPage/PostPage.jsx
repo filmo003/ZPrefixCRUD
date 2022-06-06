@@ -104,12 +104,12 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
         // signed in, allow to edit/delete
         return (
             <div id='postContainer'>
-                <h1>{post.title}</h1>
+                <h1 className='indiPostTitle'>{post.title}</h1>
                 <p id='createdOn'>Created on: {post.created_at}</p>
                 <p id='content'>{post.content}</p>
                 <div className='editAndDelete'>
-                    <button onClick={() => setEditState(true)}>Edit Post</button>
-                    <button onClick={() => handleDelete()}>Delete Post</button>
+                    <button className='editAndDelete' onClick={() => setEditState(true)}>Edit Post</button>
+                    <button className='editAndDelete' onClick={() => handleDelete()}>Delete Post</button>
                 </div>
             </div>
         );
@@ -118,7 +118,7 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
         // not signed in, only allow to read
         return (
             <div>
-                <h1>{post.title}</h1>
+                <h1 className='indiPostTitle'>{post.title}</h1>
                 <p>Created on: {post.created_at}</p>
                 <p>{post.content}</p>
                 <div className='editAndDelete'>
