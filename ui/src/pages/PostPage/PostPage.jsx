@@ -117,10 +117,10 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
     else {
         // not signed in, only allow to read
         return (
-            <div>
+            <div id='postContainer'>
                 <h1 className='indiPostTitle'>{post.title}</h1>
-                <p>Created on: {post.created_at}</p>
-                <p>{post.content}</p>
+                <p id='createdOn'>Created on: {post.created_at}</p>
+                <p id='content'>{post.content}</p>
                 <div className='editAndDelete'>
                     <NavLink to={`/login`}>Sign in to edit or delete</NavLink>
                 </div>
