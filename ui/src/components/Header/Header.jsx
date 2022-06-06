@@ -22,11 +22,13 @@ const Header = ({ location }) => {
     return (
       <RuxGlobalStatusBar
       id="page-title"
-      style={{ backgroundColor: '#1DAA64' }}
+      style={{ 
+        backgroundColor: '#1DAA64',
+        fontSize: "2rem"
+      }}
       app-name={getPageTitle(location)}
       include-icon="true"
       menu-icon="apps"
-      fontSize="2rem"
       >
         <span id="welcomeUser">
           Welcome: {Cookies.get('username')}

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Blog.css';
 
 const Blog = ({post}) => {
 
@@ -8,10 +9,12 @@ const Blog = ({post}) => {
     }
 
     return (
-        <div>
-            <h3>{post.title}</h3>
-            <p>Created on: {post.created_at}</p>
-            <p>{postContent}</p>
+        <div className='blogBox'>
+            <h3 className='postTitle'>{post.title}</h3>
+            <p className='createdOn'>Created on: {post.created_at}</p>
+            <div className='postContainer'>
+                <p className='postContent'>{postContent}</p> 
+            </div>
         </div>
     );
 }

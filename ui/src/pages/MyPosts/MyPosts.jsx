@@ -2,6 +2,7 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import Blog from '../../components/Blog/Blog';
 import { useNavigate } from 'react-router-dom';
+import './MyPosts.css';
 
 
 const MyPosts = ({ posts }) => {
@@ -13,7 +14,7 @@ const MyPosts = ({ posts }) => {
 
     if (myPosts.length === 0) {
         return (
-            <div>
+            <div id='noPost'>
                 <h3>You have no posts</h3>
             </div>
         );
@@ -21,8 +22,8 @@ const MyPosts = ({ posts }) => {
     else {
         return (
             <div>
-                <h3>My Posts</h3>
-                <div id='blog-container'>
+                <h3 id='myPostTitle'>My Posts</h3>
+                <div id='blogBoxContainer'>
                     {myPosts.map(post => {
                         return (
                             <div className='blogContainer' key={post.id} onClick={ () => {
