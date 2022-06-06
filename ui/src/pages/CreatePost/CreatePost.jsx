@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import './CreatePost.css';
 
 const CreatePost = ({ useSetRerender, rerender }) => {
     const navigate = useNavigate();

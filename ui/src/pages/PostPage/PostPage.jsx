@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { NavLink } from 'react-router-dom';
+import './PostPage.css';
 
 const PostPage = ({ posts, useSetRerender, rerender }) => {
     const navigate = useNavigate();
@@ -94,7 +95,7 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
     }
     else if (!post) {
         return (
-            <div>
+            <div id='postNotFount'>
                 <h2>Post not found</h2>
             </div>
         );
@@ -102,10 +103,10 @@ const PostPage = ({ posts, useSetRerender, rerender }) => {
     else if (Cookies.get("userId")) {
         // signed in, allow to edit/delete
         return (
-            <div>
+            <div id='postContainer'>
                 <h1>{post.title}</h1>
-                <p>Created on: {post.created_at}</p>
-                <p>{post.content}</p>
+                <p id='createdOn'>Created on: {post.created_at}</p>
+                <p id='content'>{post.content}</p>
                 <div className='editAndDelete'>
                     <button onClick={() => setEditState(true)}>Edit Post</button>
                     <button onClick={() => handleDelete()}>Delete Post</button>
